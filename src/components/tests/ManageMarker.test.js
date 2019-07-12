@@ -2,7 +2,6 @@ import React from "react";
 import { shallow } from "../../setupTests";
 
 import ManageMarker from "../ManageMarker";
-import Marker from "../Marker";
 
 describe("ManageMarker Component", () => {
   const locations = [{ lat: 33.33333, lng: 22.222222, title: "Test" }];
@@ -17,9 +16,8 @@ describe("ManageMarker Component", () => {
         onMarkerEdit={onMarkerEdit}
       />
     );
-
-    // Expect the wrapper object to be defined
     expect(wrapper.find("input")).toHaveLength(2);
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("onMarkerDelete should called upon delete event", () => {
@@ -33,11 +31,11 @@ describe("ManageMarker Component", () => {
       />
     );
 
-    // Expect the wrapper object to be defined
     expect(wrapper.find("input")).toHaveLength(2);
 
     wrapper.find("#delete_btn_0").simulate("click");
     expect(clickFn).toHaveBeenCalled();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("onMarkerEdit should called upon edit event", () => {
@@ -51,10 +49,10 @@ describe("ManageMarker Component", () => {
       />
     );
 
-    // Expect the wrapper object to be defined
     expect(wrapper.find("input")).toHaveLength(2);
 
     wrapper.find("#edit_btn_0").simulate("click");
     expect(clickFn).toHaveBeenCalled();
+    expect(wrapper).toMatchSnapshot();
   });
 });

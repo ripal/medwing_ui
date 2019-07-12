@@ -5,8 +5,8 @@ import Marker from "./Marker";
 
 const propTypes = {
   title: PropTypes.string,
-  onInfoWindowClose: PropTypes.object,
-  onMarkerSave: PropTypes.object,
+  onInfoWindowClose: PropTypes.func,
+  onMarkerSave: PropTypes.func,
   position: PropTypes.object
 };
 

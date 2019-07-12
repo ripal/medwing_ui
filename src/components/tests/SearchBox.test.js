@@ -1,14 +1,45 @@
 import React from "react";
-import { shallow, mount } from "../../setupTests";
+import { mount } from "../../setupTests";
 
-import SearchBox from "../SearchBox";
-import Marker from "../Marker";
+import { SearchBox } from "../SearchBox";
 
 describe("SearchBox Component", () => {
-  // const locations = [{ lat: 33.33333, lng: 22.222222, title: "Test" }];
-  // it("render component", () => {
-  //   const wrapper = mount(<SearchBox />);
-  //   // Expect the wrapper object to be defined
-  //   expect(wrapper.props().geoCodeApiRequest).to.equal(1);
-  // });
+  it("render component", () => {
+    const wrapper = mount(<SearchBox />);
+
+    expect(wrapper.state("geoCodeApiRequest")).toBe(1);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("search result available", () => {
+    const mockFn = jest.fn();
+    const wrapper = mount(<SearchBox onPlaceSubmit={mockFn} geoCode={""} />);
+    const geoCode = {
+      geoCode: {
+        status: "GETGEOCODEFROMADDRESS_SUCCESS",
+        data: [{ latitude: 22.22222, longitue: 33.3333 }]
+      }
+    };
+
+    wrapper.setProps(geoCode);
+    expect(mockFn).toHaveBeenCalled();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("search submit", () => {
+    const mockFn = jest.fn();
+    const wrapper = mount(
+      <SearchBox
+        onPlaceSubmit={mockFn}
+        geoCode={{
+          status: "GETGEOCODEFROMADDRESS_SUCCESS",
+          data: [{ latitude: 22.22222, longitue: 33.3333 }]
+        }}
+      />
+    );
+
+    wrapper.setState({ address: "Test" });
+    wrapper.instance().onKeyDown({ key: "Enter" });
+    expect(wrapper).toMatchSnapshot();
+  });
 });

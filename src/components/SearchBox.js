@@ -6,11 +6,11 @@ import { searchAddress } from "../helpers/GeoCode";
 const CLIENT_SIDE_LAT_LONG_API = 1;
 const SERVER_SIDE_LAT_LONG_API = 2;
 
-class SearchBox extends React.Component {
+export class SearchBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: null,
+      address: "",
       geoCodeApiRequest: CLIENT_SIDE_LAT_LONG_API // client/server side api to get lat long
     };
   }
@@ -77,7 +77,7 @@ class SearchBox extends React.Component {
   render() {
     return (
       <div>
-        <label for="client_api">Client side Places API</label>
+        <label htmlFor="client_api">Client side Places API</label>
         <input
           type="radio"
           name="api_type"
@@ -86,7 +86,7 @@ class SearchBox extends React.Component {
           checked={this.state.geoCodeApiRequest === CLIENT_SIDE_LAT_LONG_API}
           onChange={this.onApiTypeChange}
         />
-        <label for="server_api">Server side GeoCode API</label>
+        <label htmlFor="server_api">Server side GeoCode API</label>
         <input
           type="radio"
           name="api_type"
