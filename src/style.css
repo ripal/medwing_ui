@@ -1,0 +1,39 @@
+.app {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.marker_container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 50%;
+  align-self: flex-start;
+}
+
+.marker {
+  padding: 8px;
+}
+
+.marker_title {
+  font-size: 18px;
+  color: cadetblue;
+  padding: 4px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.marker_sub_title {
+  font-size: 14px;
+  padding: 4px;
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+}
+
+.marker_window {
+  padding: 8px;
+}
